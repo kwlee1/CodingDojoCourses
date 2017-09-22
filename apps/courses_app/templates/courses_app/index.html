@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bootcamp Courses</title>
+</head>
+<body>
+    <h1>Add a new course</h1>
+        <p>{{errors.name}}</p>
+        <p>{{errors.desc}}</p>
+    <form action='/create' method='post'>
+        {% csrf_token %}
+        Name:<input type="text" name="name"><br>
+        Description: <br><textarea name="desc" id="" cols="30" rows="10"></textarea><br>
+        <input type="submit" value="Add">
+    </form><br>
+    <h1>Courses</h1>
+    <table>
+        <th><tr>
+        <td>Course Name</td>
+        <td>Description</td>
+        <td>Date Added</td>
+        <td>Actions</td>
+        </tr></th>
+        {% for course in courses %}
+            <tr>
+                <td>{{course.name}}</td>
+                <td>{{course.desc}}</td>
+                <td>{{course.created_at}}</td>
+                <td><a href="/destroy/{{course.id}}">remove</a></td>
+            </tr>
+        {% endfor %}
+    </table><br>
+    </form>
+</body>
+</html>
