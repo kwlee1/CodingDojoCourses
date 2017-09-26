@@ -6,6 +6,8 @@ from .models import Courses
 
 # Create your views here.
 def index(request):
+    if 'errors' not in request.session:
+        request.session['errors'] = []
     context = {
         "courses": Courses.objects.all(), 
         "errors": request.session['errors']
